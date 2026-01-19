@@ -29,12 +29,15 @@ which collapses in chronically congested zones.
 4. Temporal Resilience Analysis
 Leveraged Advanced SQL Window Functions (LAG, OVER) to track monthly changes in congestion. We analyzed the "Congestion Solidification" point—the exact 
 moment a corridor transitions from volatile to a permanent structural bottleneck.
+<p align="center">
+  <img src="visualizations/Screenshot (319).png" width="600" title="Koramangala-Daily Congestion Heatmap(Chronic Corridor)">
+</p>
 
-5. Spatial "Gravity" Analysis
+6. Spatial "Gravity" Analysis
 Established a causal link between POI Proximity (Tech Parks, Malls) and corridor failure. Using the Geodesic formula, we proved how "Urban Gravity" dictates the 
 saturation point of the road network. We also bucketed the POI's based on its distance(km) from the corridor to better assess their impact on traffic metrics.
 
-6. Multi-Collinearity Optimized KPI
+7. Multi-Collinearity Optimized KPI
 Designed a Final Corridor Priority Index with a 40/25/15/20 weighting strategy. We deliberately filtered out redundant signals (Volume and Emissions) to prevent
 "signal double-counting" and focus on independent variables like Volatility and Sensitivity.
 
@@ -49,6 +52,9 @@ The Anomaly Paradox: Validated Z-Score as the superior tool for identifying "Mir
 
 Chronic Corridor's Symmetry Gap: Performed granular analysis of road vs overall area congestion analysis for chronic corridors ,Found days where a road was at 1.0 (Peak Saturation)
 while the area mean was 0.6, suggesting immediate relief is possible through Dynamic Route Rerouting even for chronic bottlenecks.
+<p align="center">
+  <img src="visualizations/Screenshot (321).png" width="600"">
+</p>
 
 POI's Clustering: Chronic corridors showed extreme POI density within a <1km and <2.5 Km radius, whereas Volatile corridors had dispersed density (>5km). 
 Spatially verified that the Corridors segmented into Chronic Category were having more POI's density within the corridor centre whereas Corridors segmented
@@ -60,3 +66,5 @@ Language: Python (Pandas, NumPy)
 Geospatial: Geopy (Geodesic Distance Modeling)
 Visuals: Matplotlib, Seaborn (Heatmaps, Quadrant Scatter Plots Analysis, Combined horizontal Bar-Charts)
 Bridge: SQLAlchemy (Python-to-SQL Production Workflow)
+
+
