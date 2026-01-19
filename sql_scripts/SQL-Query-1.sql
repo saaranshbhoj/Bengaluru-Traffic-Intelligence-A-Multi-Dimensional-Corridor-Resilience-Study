@@ -28,8 +28,6 @@
 --     lon DECIMAL(9,6)
 -- );
 
--- USE bengaluru_traffic
-
 
 -- LOAD DATA LOCAL INFILE 'C:/Users/asbho/OneDrive/Desktop/Pandas/Bengluru Traffic Analysis/data/cleaned/traffic_cleaned_geo.csv'
 -- INTO TABLE traffic_cleaned_geo

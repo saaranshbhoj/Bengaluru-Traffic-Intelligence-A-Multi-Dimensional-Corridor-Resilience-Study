@@ -49,7 +49,7 @@
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- ---------------------------------------------------Unique spatial entities--------------------------------------------------------------------------
 -- SELECT
--- 	COUNT(DISTINCT road) as Distinct_Roads,
+-- 	COUNT(DISTINCT road) as "Distinct_Roads/Corridors",
 --     COUNT(DISTINCT area) as Distinct_Areas,
 --     COUNT(DISTINCT CONCAT(area,'|',road)) as unique_spatial_entities
 -- FROM traffic_cleaned_geo;
@@ -110,10 +110,10 @@
 --     SUM(traffic_volume) AS total_volume
 -- FROM traffic_cleaned_geo
 -- GROUP BY dt
--- ORDER BY dt
+-- ORDER BY dt;
 -- ------------------------------------------------------------------------------------------------------------------------------------------------
 -- ---------------“Best” and “Worst” days of the entire day why to find? :  Establishing the Absolute Range (Best/Worst Case Scenarios)
--- By calculating the extreme boundary values we can create a theoretical best case congestion_score and theoretical worst we can build our model
+-- By calculating the extreme boundary values we can create a theoretical best case congestion_score and theoretical worst. We can build our model
 -- such that if congestion_score for that day reaches theoretical worst raise an emergency alarm. Help in defining absolute boundary of the system/model
 
 -- SELECT DATE(timestamp) as day, 
@@ -140,8 +140,8 @@
 --     weather,
 --     COUNT(*) AS records,
 --     ROUND(AVG(congestion_score), 3) AS avg_congestion,
---     ROUND(STDDEV_SAMP(congestion_score),2) as volatility_data,
---     ROUND(1.0 * STDDEV_SAMP(congestion_score) / AVG(congestion_score),2) as coeff_of_variation,
+--     ROUND(STDDEV_SAMP(congestion_score),2) as volatility_congestion,
+--     ROUND(1.0 * STDDEV_SAMP(congestion_score) / NULLIF(AVG(congestion_score),0),2) as coeff_of_variation,
 --     ROUND(AVG(avg_speed), 2) AS avg_speed,
 --     ROUND(AVG(traffic_volume), 0) AS avg_volume
 -- FROM traffic_cleaned_geo
@@ -155,8 +155,8 @@
 --     roadwork,
 --     COUNT(*) AS records,
 --     ROUND(AVG(congestion_score), 3) AS avg_congestion,
---     ROUND(STDDEV_SAMP(congestion_score),2) as volatility_data,
---     ROUND(1.0 * STDDEV_SAMP(congestion_score)/ AVG(congestion_score),2) as coeff_of_variation
+--     ROUND(STDDEV_SAMP(congestion_score),2) as volatility_congestion,
+--     ROUND(1.0 * STDDEV_SAMP(congestion_score)/ NULLIF(AVG(congestion_score),0),2) as coeff_of_variation
 -- FROM traffic_cleaned_geo
 -- GROUP BY roadwork
 -- ORDER BY avg_congestion DESC;
@@ -244,10 +244,11 @@
 -- SELECT area,road, 	ROUND(AVG(congestion_score),2) as avg_congestion,
 --       ROUND(AVG(traffic_volume),2) as avg_volume,
 --       ROUND(AVG(avg_speed),2) as avg_speed,
---       ROUND(AVG(public_transport_usage),2) as avg_usage
+--       ROUND(AVG(public_transport_usage),2) as avg_usage,
+-- 	  ROUND(STDDEV_SAMP(public_transport_usage),2) as usage_volatility
 --   FROM traffic_cleaned_geo
 --   GROUP BY area,road
---   ORDER BY avg_usage DESC;
+ --  ORDER BY avg_usage DESC;
 
 -- NOTE: Our query output and correlation analysis for the city and for individual corridors doesn't reflected any significant correlations.
 -------------------------------------------------------------------------------------------------------------------------------------------------------

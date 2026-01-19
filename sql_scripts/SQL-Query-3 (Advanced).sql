@@ -121,6 +121,7 @@
 -- Here we compare each road to its area average and see which roads are under/over-performing within the same area.
 -- Ques: Are areas uniformly congested or is there any volatility within roads of same areas?
 -- Ques: If the areas have non uniform congestion distribution then there is a possibility of finding an alternative route in same area for faster commute!
+
 -- WITH daily as (
 -- SELECT DATE(timestamp) as date,area,road,
 -- 	ROUND(AVG(congestion_score),2) as avg_congestion,
@@ -158,7 +159,8 @@
 -- ORDER BY area, pct_rank_in_area DESC;
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 -- ---------------------------------------BUCKETING THE ROADS BASED ON VOLATILITY-----------------------------------------------------------------------
--- RANGE OF VOLATILITY IN DATASET : 0.14-0.25
+-- ------------------- RANGE OF VOLATILITY IN DATASET : 0.14-0.25
+
 -- WITH ct_1 as (
 -- SELECT area,road,
 --         ROUND(AVG(congestion_score),2) AS avg_congestion,
@@ -174,11 +176,6 @@
 -- 		ELSE 'High'
 -- 	END as volatility_level
 -- FROM ct_1;
-
--- ------FINDINGS : From the analysis we can find that most of the areas fall in medium-high volatility range for a data that spans 2.5 years.alter
--- This indicates that most of the roads can be made less congested by adjusting the signal timings,better traffic management by traffic police and
--- handling the peak hour congestion well and these areas does not require any big infrastructural change.
-
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------------------------------
